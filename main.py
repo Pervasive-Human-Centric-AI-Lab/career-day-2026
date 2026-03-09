@@ -237,8 +237,9 @@ def main() -> int:
     # Write index page (root permalink)
     idx: List[str] = []
     idx.append(front_matter(title="Aziende partecipanti – Career Day", permalink="/"))
-    idx.append("# Aziende partecipanti – Career Day\n")
-    idx.append("Elenco aziende (clicca per aprire la scheda):\n")
+    idx.append("# Aziende partecipanti – Career Day Dipartimento di Informatica, Università di Torino\n")
+    idx.append("## 17 marzo 2026\n")
+    idx.append("Clicca per aprire la scheda:\n")
 
     for name, slug in written:
         idx.append(f"- [{name}](companies/{slug}/)")

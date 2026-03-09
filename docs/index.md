@@ -3,9 +3,11 @@ title: "Aziende partecipanti – Career Day"
 permalink: /
 ---
 
-# Aziende partecipanti – Career Day
+# Aziende partecipanti – Career Day Dipartimento di Informatica, Università di Torino
 
-Elenco aziende (clicca per aprire la scheda):
+## 17 marzo 2026
+
+Clicca per aprire la scheda:
 
 - [Coolshop](companies/coolshop/)
 - [CSI Piemonte](companies/csi-piemonte/)
