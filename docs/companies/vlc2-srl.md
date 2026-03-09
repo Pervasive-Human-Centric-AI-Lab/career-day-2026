@@ -1,3 +1,8 @@
+---
+title: "VLC2 S.r.l."
+permalink: /companies/vlc2-srl/
+---
+
 # VLC2 S.r.l.
 
 ## Descrizione azienda

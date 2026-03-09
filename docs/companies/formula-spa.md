@@ -1,3 +1,8 @@
+---
+title: "Formula S.p.A."
+permalink: /companies/formula-spa/
+---
+
 # Formula S.p.A.
 
 ## Descrizione azienda

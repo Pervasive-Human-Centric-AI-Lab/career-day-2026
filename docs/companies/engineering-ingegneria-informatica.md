@@ -1,3 +1,8 @@
+---
+title: "ENGINEERING INGEGNERIA INFORMATICA"
+permalink: /companies/engineering-ingegneria-informatica/
+---
+
 # ENGINEERING INGEGNERIA INFORMATICA
 
 ## Descrizione azienda

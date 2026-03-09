@@ -1,3 +1,8 @@
+---
+title: "Pro Logic Informatica"
+permalink: /companies/pro-logic-informatica/
+---
+
 # Pro Logic Informatica
 
 ## Descrizione azienda

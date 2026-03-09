@@ -1,3 +1,8 @@
+---
+title: "SISTEMI S.p.A."
+permalink: /companies/sistemi-spa/
+---
+
 # SISTEMI S.p.A.
 
 ## Descrizione azienda

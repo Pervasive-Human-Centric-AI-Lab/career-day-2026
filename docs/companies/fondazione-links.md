@@ -1,3 +1,8 @@
+---
+title: "Fondazione LINKS"
+permalink: /companies/fondazione-links/
+---
+
 # Fondazione LINKS
 
 ## Descrizione azienda

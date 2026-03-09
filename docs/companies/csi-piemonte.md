@@ -1,3 +1,8 @@
+---
+title: "CSI Piemonte"
+permalink: /companies/csi-piemonte/
+---
+
 # CSI Piemonte
 
 ## Descrizione azienda

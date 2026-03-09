@@ -1,3 +1,8 @@
+---
+title: "MBDA Italia"
+permalink: /companies/mbda-italia/
+---
+
 # MBDA Italia
 
 ## Descrizione azienda

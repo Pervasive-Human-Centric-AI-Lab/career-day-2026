@@ -1,16 +1,38 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+"""
+Generate a GitHub Pages (Jekyll) site from Google Forms responses exported to Excel.
+
+Input:
+  data/schede.xlsx
+
+Output (ready to publish from GitHub Pages -> Deploy from branch -> /docs):
+  docs/index.md
+  docs/companies/<slug>.md
+  docs/_config.yml
+
+Notes:
+- Jekyll only processes Markdown into HTML when front matter is present.
+  This script writes front matter in every page.
+- Do NOT create docs/.nojekyll (it would disable Jekyll).
+"""
+
 from __future__ import annotations
 
 import re
 from pathlib import Path
-from typing import Optional, Dict, List
+from typing import Optional, Dict, List, Tuple
 
 import pandas as pd
 
 
+# --------------------------
+# Helpers
+# --------------------------
+
 def norm(s: str) -> str:
+    """Normalise strings for column matching."""
     s = (s or "").strip().lower()
     s = re.sub(r"\s+", " ", s)
     s = s.replace("–", "-").replace("—", "-")
@@ -18,6 +40,10 @@ def norm(s: str) -> str:
 
 
 def find_col(columns: List[str], patterns: List[str]) -> Optional[str]:
+    """
+    Find the first column whose normalised name matches any regex in patterns.
+    Returns the original column name or None.
+    """
     ncols = {c: norm(c) for c in columns}
     for pat in patterns:
         rx = re.compile(pat, re.IGNORECASE)
@@ -28,6 +54,7 @@ def find_col(columns: List[str], patterns: List[str]) -> Optional[str]:
 
 
 def clean_text(x) -> str:
+    """Clean cell text for Markdown."""
     if pd.isna(x):
         return ""
     s = str(x).strip()
@@ -38,50 +65,75 @@ def clean_text(x) -> str:
 
 def slugify(name: str) -> str:
     """
-    Simple slugify for filenames:
-    - lowercases
-    - replaces spaces with hyphens
-    - removes non alnum/hyphen
+    Slugify for filenames/URLs:
+    - lowercase
+    - spaces -> hyphens
+    - remove punctuation
     """
-    s = name.strip().lower()
+    s = (name or "").strip().lower()
     s = s.replace("&", " and ")
+    # Keep unicode letters/numbers/underscore/hyphen/space
     s = re.sub(r"[^\w\s-]", "", s, flags=re.UNICODE)
     s = re.sub(r"\s+", "-", s)
     s = re.sub(r"-{2,}", "-", s)
-    return s.strip("-") or "azienda"
+    s = s.strip("-")
+    return s or "azienda"
 
 
-def unique_path(base_dir: Path, slug: str, suffix: str = ".md") -> Path:
+def ensure_unique_slug(slug: str, used: Dict[str, int]) -> str:
     """
-    Ensure unique filename in base_dir by appending -2, -3...
+    Ensure unique slugs: if already used, append -2, -3, ...
     """
-    p = base_dir / f"{slug}{suffix}"
-    if not p.exists():
-        return p
-    i = 2
-    while True:
-        p = base_dir / f"{slug}-{i}{suffix}"
-        if not p.exists():
-            return p
-        i += 1
+    if slug not in used:
+        used[slug] = 1
+        return slug
+    used[slug] += 1
+    return f"{slug}-{used[slug]}"
 
+
+def escape_yaml(s: str) -> str:
+    """Escape a string for safe inclusion in YAML double quotes."""
+    return (s or "").replace("\\", "\\\\").replace('"', '\\"')
+
+
+def front_matter(title: Optional[str] = None, permalink: Optional[str] = None) -> str:
+    """
+    Minimal Jekyll front matter that triggers Markdown processing.
+    Add optional title/permalink.
+    """
+    fm = ["---"]
+    if title:
+        fm.append(f'title: "{escape_yaml(title)}"')
+    if permalink:
+        fm.append(f"permalink: {permalink}")
+    fm.append("---\n")
+    return "\n".join(fm)
+
+
+# --------------------------
+# Main
+# --------------------------
 
 def main() -> int:
     # Fixed input/output locations
     in_path = Path("data") / "schede.xlsx"
-    out_dir = Path("output")
+
+    # Publish from /docs in GitHub Pages settings
+    out_dir = Path("docs")
     companies_dir = out_dir / "companies"
     index_path = out_dir / "index.md"
+    config_path = out_dir / "_config.yml"
 
     companies_dir.mkdir(parents=True, exist_ok=True)
 
     if not in_path.exists():
         raise FileNotFoundError(f"Input file not found: {in_path}")
 
+    # Read Excel
     df = pd.read_excel(in_path, engine="openpyxl")
     cols = list(df.columns)
 
-    # Detect columns
+    # Detect columns (robust to small wording changes)
     colmap: Dict[str, Optional[str]] = {
         "nome_azienda": find_col(cols, [
             r"\bnome\b.*\bazienda\b",
@@ -96,6 +148,7 @@ def main() -> int:
         ]),
         "cosa_cercate": find_col(cols, [
             r"\bcosa\b.*\bcercate\b",
+            r"\bcosa\b.*\boffrite\b",
             r"\boffrite\b",
             r"\bposizion",
             r"\bfigure\b",
@@ -122,12 +175,13 @@ def main() -> int:
     missing = [k for k, v in colmap.items() if v is None]
     if missing:
         print("WARNING: Some fields could not be auto-detected:", ", ".join(missing))
-        print("Available columns:")
+        print("Available columns in the spreadsheet:")
         for c in cols:
             print(" -", c)
         print("Continuing: missing fields will be left blank.\n")
 
-    records = []
+    # Build records
+    records: List[Dict[str, str]] = []
     for _, row in df.iterrows():
         nome = clean_text(row.get(colmap["nome_azienda"], "")) if colmap["nome_azienda"] else ""
         if not nome:
@@ -145,14 +199,25 @@ def main() -> int:
     # Sort by company name
     records.sort(key=lambda r: r["Nome azienda"].strip().lower())
 
-    # Write one page per company
-    written = []
-    for r in records:
-        slug = slugify(r["Nome azienda"])
-        page_path = unique_path(companies_dir, slug, ".md")
+    # Write Jekyll config (pretty URLs)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    config_path.write_text("permalink: pretty\n", encoding="utf-8")
 
-        md = []
-        md.append(f"# {r['Nome azienda']}\n")
+    # Write one page per company
+    used_slugs: Dict[str, int] = {}
+    written: List[Tuple[str, str]] = []  # (company name, slug)
+
+    for r in records:
+        name = r["Nome azienda"]
+        slug = slugify(name)
+        slug = ensure_unique_slug(slug, used_slugs)
+
+        page_path = companies_dir / f"{slug}.md"
+        permalink = f"/companies/{slug}/"
+
+        md: List[str] = []
+        md.append(front_matter(title=name, permalink=permalink))
+        md.append(f"# {name}\n")
 
         md.append("## Descrizione azienda\n")
         md.append((r["Descrizione azienda"] or "-") + "\n")
@@ -167,22 +232,23 @@ def main() -> int:
         md.append((r["Indirizzo e contatto"] or "-") + "\n")
 
         page_path.write_text("\n".join(md), encoding="utf-8")
-        written.append((r["Nome azienda"], page_path))
+        written.append((name, slug))
 
-    # Write index with links
-    idx = []
+    # Write index page (root permalink)
+    idx: List[str] = []
+    idx.append(front_matter(title="Aziende partecipanti – Career Day", permalink="/"))
     idx.append("# Aziende partecipanti – Career Day\n")
     idx.append("Elenco aziende (clicca per aprire la scheda):\n")
-    for name, p in written:
-        rel = p.relative_to(out_dir).as_posix()
-        idx.append(f"- [{name}]({rel})")
-    idx.append("")  # trailing newline
 
-    out_dir.mkdir(parents=True, exist_ok=True)
+    for name, slug in written:
+        idx.append(f"- [{name}](companies/{slug}/)")
+
+    idx.append("")
     index_path.write_text("\n".join(idx), encoding="utf-8")
 
-    print(f"OK: created {len(written)} pagine in {companies_dir}")
+    print(f"OK: created {len(written)} pages in {companies_dir}")
     print(f"OK: index written to {index_path}")
+    print(f"OK: Jekyll config written to {config_path}")
     return 0
 
 

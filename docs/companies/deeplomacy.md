@@ -1,3 +1,8 @@
+---
+title: "Deeplomacy"
+permalink: /companies/deeplomacy/
+---
+
 # Deeplomacy
 
 ## Descrizione azienda

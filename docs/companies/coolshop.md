@@ -1,3 +1,8 @@
+---
+title: "Coolshop"
+permalink: /companies/coolshop/
+---
+
 # Coolshop
 
 ## Descrizione azienda

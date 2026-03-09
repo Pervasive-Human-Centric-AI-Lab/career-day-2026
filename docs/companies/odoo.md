@@ -1,3 +1,8 @@
+---
+title: "Odoo"
+permalink: /companies/odoo/
+---
+
 # Odoo
 
 ## Descrizione azienda

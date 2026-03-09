@@ -1,3 +1,8 @@
+---
+title: "SSE - Sofiter System Engineering SpA"
+permalink: /companies/sse-sofiter-system-engineering-spa/
+---
+
 # SSE - Sofiter System Engineering SpA
 
 ## Descrizione azienda

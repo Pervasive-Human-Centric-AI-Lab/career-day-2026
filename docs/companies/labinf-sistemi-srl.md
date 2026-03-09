@@ -1,3 +1,8 @@
+---
+title: "Labinf Sistemi srl"
+permalink: /companies/labinf-sistemi-srl/
+---
+
 # Labinf Sistemi srl
 
 ## Descrizione azienda
