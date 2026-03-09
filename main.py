@@ -238,7 +238,7 @@ def main() -> int:
     idx: List[str] = []
     idx.append(front_matter(title="Aziende partecipanti – Career Day", permalink="/"))
     idx.append("## Aziende partecipanti\n\n# Career Day Dipartimento di Informatica, Università di Torino\n")
-    idx.append("## 17 marzo 2026\n")
+    idx.append("#### 17 marzo 2026\n")
     idx.append("Clicca per aprire la scheda:\n")
 
     for name, slug in written:

@@ -7,7 +7,7 @@ permalink: /
 
 # Career Day Dipartimento di Informatica, Università di Torino
 
-## 17 marzo 2026
+#### 17 marzo 2026
 
 Clicca per aprire la scheda:
 
