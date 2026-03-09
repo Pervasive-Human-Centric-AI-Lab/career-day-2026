@@ -4,6 +4,7 @@ permalink: /
 ---
 
 ## Aziende partecipanti
+
 # Career Day Dipartimento di Informatica, Università di Torino
 
 ## 17 marzo 2026
