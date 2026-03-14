@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "Accenture"
 permalink: /companies/accenture/
 ---

@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "Lutech S.p.a"
 permalink: /companies/lutech-spa/
 ---

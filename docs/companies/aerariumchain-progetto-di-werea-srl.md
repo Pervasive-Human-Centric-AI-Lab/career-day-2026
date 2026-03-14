@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "AerariumChain (progetto di Werea Srl)"
 permalink: /companies/aerariumchain-progetto-di-werea-srl/
 ---

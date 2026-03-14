@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "ENGINEERING INGEGNERIA INFORMATICA"
 permalink: /companies/engineering-ingegneria-informatica/
 ---

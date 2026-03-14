@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "Aziende partecipanti – Career Day"
 permalink: /
 ---

@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "CSI Piemonte"
 permalink: /companies/csi-piemonte/
 ---

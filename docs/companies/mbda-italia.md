@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "MBDA Italia"
 permalink: /companies/mbda-italia/
 ---

@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "Do IT Systems srl"
 permalink: /companies/do-it-systems-srl/
 ---

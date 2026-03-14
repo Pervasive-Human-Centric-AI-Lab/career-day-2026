@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "WAVE INFORMATICA"
 permalink: /companies/wave-informatica/
 ---

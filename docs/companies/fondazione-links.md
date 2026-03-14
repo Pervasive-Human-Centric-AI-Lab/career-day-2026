@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "Fondazione LINKS"
 permalink: /companies/fondazione-links/
 ---

@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "Syscons"
 permalink: /companies/syscons/
 ---

@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "Pro Logic Informatica"
 permalink: /companies/pro-logic-informatica/
 ---

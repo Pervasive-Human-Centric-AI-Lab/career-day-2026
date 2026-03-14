@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{{ page.title | default: site.title }}</title>
+    <style>
+      .unito-logo {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .page-wrap {
+        max-width: 1100px;  /* adjust if you want wider/narrower content */
+        margin: 0 auto;
+        padding: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Full-width logo -->
+    <img
+      class="unito-logo"
+      src="https://cdn.unito.it/unito-loghi/logo_sigillo_orizzontale_neg.svg"
+      alt="Università di Torino"
+    />
+
+    <div class="page-wrap">
+      {{ content }}
+    </div>
+  </body>
+</html>

@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "Gruppo Iren"
 permalink: /companies/gruppo-iren/
 ---

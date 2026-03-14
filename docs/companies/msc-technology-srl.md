@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "MSC Technology Srl"
 permalink: /companies/msc-technology-srl/
 ---

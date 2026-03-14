@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "SSE - Sofiter System Engineering SpA"
 permalink: /companies/sse-sofiter-system-engineering-spa/
 ---

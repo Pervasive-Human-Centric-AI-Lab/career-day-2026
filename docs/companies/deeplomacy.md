@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "Deeplomacy"
 permalink: /companies/deeplomacy/
 ---

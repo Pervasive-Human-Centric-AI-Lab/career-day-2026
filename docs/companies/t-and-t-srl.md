@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "T&T srl"
 permalink: /companies/t-and-t-srl/
 ---

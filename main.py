@@ -95,20 +95,14 @@ def escape_yaml(s: str) -> str:
     """Escape a string for safe inclusion in YAML double quotes."""
     return (s or "").replace("\\", "\\\\").replace('"', '\\"')
 
-
-def front_matter(title: Optional[str] = None, permalink: Optional[str] = None) -> str:
-    """
-    Minimal Jekyll front matter that triggers Markdown processing.
-    Add optional title/permalink.
-    """
-    fm = ["---"]
+def front_matter(title: str | None = None, permalink: str | None = None) -> str:
+    fm = ["---", "layout: default"]
     if title:
         fm.append(f'title: "{escape_yaml(title)}"')
     if permalink:
         fm.append(f"permalink: {permalink}")
     fm.append("---\n")
     return "\n".join(fm)
-
 
 # --------------------------
 # Main

@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "Formula S.p.A."
 permalink: /companies/formula-spa/
 ---

@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "Odoo"
 permalink: /companies/odoo/
 ---

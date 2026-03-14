@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "SISTEMI S.p.A."
 permalink: /companies/sistemi-spa/
 ---

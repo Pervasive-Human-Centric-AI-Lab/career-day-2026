@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "VLC2 S.r.l."
 permalink: /companies/vlc2-srl/
 ---

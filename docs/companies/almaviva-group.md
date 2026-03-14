@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "AlmavivA group"
 permalink: /companies/almaviva-group/
 ---

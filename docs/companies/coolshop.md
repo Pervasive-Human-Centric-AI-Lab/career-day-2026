@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "Coolshop"
 permalink: /companies/coolshop/
 ---

@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "Labinf Sistemi srl"
 permalink: /companies/labinf-sistemi-srl/
 ---

@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "POST srl"
 permalink: /companies/post-srl/
 ---
