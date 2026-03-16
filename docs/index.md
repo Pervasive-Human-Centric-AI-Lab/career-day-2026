@@ -14,6 +14,7 @@ Clicca per aprire la scheda:
 
 - [Accenture](companies/accenture/)
 - [AerariumChain (progetto di Werea Srl)](companies/aerariumchain-progetto-di-werea-srl/)
+- [aizoon technology & consulting](companies/aizoon-technology-and-consulting/)
 - [AlmavivA group](companies/almaviva-group/)
 - [Coolshop](companies/coolshop/)
 - [CSI Piemonte](companies/csi-piemonte/)
@@ -29,6 +30,7 @@ Clicca per aprire la scheda:
 - [MBDA Italia](companies/mbda-italia/)
 - [MSC Technology Srl](companies/msc-technology-srl/)
 - [Odoo](companies/odoo/)
+- [ORBYTA TECH](companies/orbyta-tech/)
 - [ORCHESTRA Srl](companies/orchestra-srl/)
 - [POST srl](companies/post-srl/)
 - [Pro Logic Informatica](companies/pro-logic-informatica/)
